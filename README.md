@@ -7,7 +7,8 @@
 
 This is my first try to interact with python _classes_, _docstrings_ and _telegram-bot-api_
 
-> Btw join to [Telegram chanel ![@benzlokzik](https://img.shields.io/badge/Telegram-Channel-blue.svg?logo=telegram)](https://t.me/benzlokzik)
+> Btw join to [Telegram chanel  
+> ![@benzlokzik](https://img.shields.io/badge/Telegram-Channel-blue.svg?logo=telegram)](https://t.me/benzlokzik)
 ___
 
 <br/><br/>
