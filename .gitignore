@@ -1,0 +1,9 @@
+/.idea
+/barcode-reader
+/log
+/secrets
+/testing
+/ttf
+/venv
+!/ttf/Symbola.ttf
+Untitled.ipynb
