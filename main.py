@@ -5,13 +5,11 @@ from io import BytesIO
 
 from PIL import Image
 from dotenv import load_dotenv
-from telegram import Update, InputFile, Bot  # , InlineKeyboardButton
+from telegram import Update, InputFile  # , InlineKeyboardButton
 from telegram.constants import ChatAction
 from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes, MessageHandler, filters
 
-import generators
-import reader
-import signature
+from moduls import generators, reader, signature
 
 
 # from typing import Union, List

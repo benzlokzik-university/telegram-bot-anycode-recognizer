@@ -12,9 +12,9 @@ ___
 
 <br/><br/>
 
-## Getting started
-
 ---
+
+## Getting started
 
 ```shell
 cd telegram-bot-anycode-recognizer
@@ -47,9 +47,10 @@ pip install -r requirements.txt
 
 <br/>
 
-## Running python code
-
 ---
+
+
+## Running python code
 
 ```shell
 python main.py
