@@ -1,9 +1,9 @@
 /.idea
 /barcode-reader
+/__pycache__
 /log
 /secrets
 /testing
 /ttf
 /venv
 !/ttf/Symbola.ttf
-Untitled.ipynb
