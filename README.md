@@ -13,8 +13,6 @@ ___
 
 <br/><br/>
 
----
-
 ## Getting started
 
 ```shell
