@@ -12,10 +12,6 @@ from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes, Messa
 from moduls import generators, reader, signature
 
 
-# from typing import Union, List
-# from pyzbar import pyzbar
-
-
 def send_action(action):
     """Sends `action` while processing func command."""
 
