@@ -1,9 +1,25 @@
 /.idea
+
 /barcode-reader
-/__pycache__
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# logs
 /log
+
+# api tokens
 /secrets
+
+# testing folders
 /testing
-/ttf
-/venv
+
+# fonts
+ttf*
+
+# virtual env
+venv*
+
+# used font
 !/ttf/Symbola.ttf

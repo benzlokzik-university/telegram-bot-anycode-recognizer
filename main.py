@@ -99,7 +99,8 @@ async def pic_decoder(update: Update, context: ContextTypes.DEFAULT_TYPE) -> Non
     bot = context.bot
     file_bytes = bot.get_file(file_id)
     print(file_bytes)
-    file_bytes_io = BytesIO(file_bytes)
+    file_data = await bot.download_file(file_bytes.file_path)
+    file_bytes_io = BytesIO(file_data)
     image = Image.open(file_bytes_io)
     read_data = reader.Decoder(image)
     if not len(read_data):
