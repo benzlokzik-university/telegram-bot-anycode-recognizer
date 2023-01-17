@@ -1,14 +1,16 @@
 # QR, barcode and base64 code recognizer
 
-#### w/ using _python-telegram-bot_ library
+#### w/ using _python-telegram-bot_ library 
 
 ---
 
+![failed on img sending](https://img.shields.io/badge/build-failed%20on%20img%20sending-red)
 
 This is my first try to interact with python _classes_, _docstrings_ and _telegram-bot-api_
 
-> Btw join to [Telegram chanel  
+> Btw join to [Telegram chanel <br/><br/>
 > ![@benzlokzik](https://img.shields.io/badge/Telegram-Channel-blue.svg?logo=telegram)](https://t.me/benzlokzik)
+
 
 <br/><br/>
 
