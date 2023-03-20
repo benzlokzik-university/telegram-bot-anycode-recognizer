@@ -17,9 +17,9 @@ def send_action(action):
 
     def decorator(func):
         @wraps(func)
-        def command_func(update, context, *args, **kwargs):
-            context.bot.send_chat_action(chat_id=update.effective_message.chat_id, action=action)
-            return func(update, context, *args, **kwargs)
+        async def command_func(update, context, *args, **kwargs):
+            await context.bot.send_chat_action(chat_id=update.effective_message.chat_id, action=action)
+            return await func(update, context, *args, **kwargs)
 
         return command_func
 
@@ -63,9 +63,9 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 
 
 # @send_typing_action
-# def user_help(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+# async def user_help(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 #     # print(dir(update.effective_user))
-#     update.message.reply_text(
+#     await update.message.reply_text(
 #         f"""
 # Salut again, {update.effective_user.full_name}!
 # This is a bot to recognize and create barcodes, QR and base64 codes!
