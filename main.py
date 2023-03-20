@@ -7,7 +7,7 @@ from PIL import Image
 from dotenv import load_dotenv
 from telegram import Update, InputFile  # , InlineKeyboardButton
 from telegram.constants import ChatAction
-from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes, MessageHandler, filters
+from telegram.ext import CommandHandler, ContextTypes, MessageHandler, filters, ApplicationBuilder
 
 from moduls import generators, reader, signature
 
@@ -17,9 +17,9 @@ def send_action(action):
 
     def decorator(func):
         @wraps(func)
-        async def command_func(update, context, *args, **kwargs):
-            await context.bot.send_chat_action(chat_id=update.effective_message.chat_id, action=action)
-            return await func(update, context, *args, **kwargs)
+        def command_func(update, context, *args, **kwargs):
+            context.bot.send_chat_action(chat_id=update.effective_message.chat_id, action=action)
+            return func(update, context, *args, **kwargs)
 
         return command_func
 
@@ -56,16 +56,16 @@ logging.basicConfig(
 
 # TODO: добавить приветствие после старта и выбор языка через
 #  https://github.com/python-telegram-bot/python-telegram-bot/wiki/Code-snippets#build-a-menu-with-buttons=
-async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     await context.bot.send_message(chat_id=update.effective_chat.id,
                                    text="Sup🖐🏿\nI'm a bot to simplify ur life. Send /help to get started"
                                    )
 
 
 # @send_typing_action
-# async def user_help(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+# def user_help(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 #     # print(dir(update.effective_user))
-#     await update.message.reply_text(
+#     update.message.reply_text(
 #         f"""
 # Salut again, {update.effective_user.full_name}!
 # This is a bot to recognize and create barcodes, QR and base64 codes!
