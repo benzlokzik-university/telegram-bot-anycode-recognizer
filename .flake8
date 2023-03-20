@@ -2,3 +2,13 @@
 max-line-length = 88
 select = C,E,F,W,B,B950
 extend-ignore = E203, E501
+exclude =
+    barcode-reader
+    __pycache__
+    log
+    venv
+    venv.13
+    .idea
+    secrets
+    testing
+    ttf
