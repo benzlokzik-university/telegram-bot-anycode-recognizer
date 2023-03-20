@@ -5,6 +5,7 @@
 ---
 
 ![failed on img sending](https://img.shields.io/badge/build-failed%20on%20img%20sending-red)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 This is my first try to interact with python _classes_, _docstrings_ and _telegram-bot-api_
 

@@ -5,17 +5,16 @@ from barcode.writer import ImageWriter
 
 class Generator:
     """
-
+    What is it for?
+        This object generates a qr or barcode
     """
+
     def __init__(self, code_type: str, data: str, filename=None):
-        """
-        What is it for?
-            This object generates a qr or barcode
-        """
+
         self.code_type = code_type
         self.data = data
         self.filename = filename
-        if self.code_type.lower() == 'qrcode':
+        if self.code_type.lower() == "qrcode":
             self.img = self.qr_generator()
         else:
             self.img = self.barcode_generator()
@@ -28,7 +27,9 @@ class Generator:
 
     def barcode_generator(self):
         # Create a barcode object
-        result = barcode.get_barcode_class(self.code_type)(self.data, writer=ImageWriter())
+        result = barcode.get_barcode_class(self.code_type)(
+            self.data, writer=ImageWriter()
+        )
         return result
 
     def qr_generator(self) -> object:
