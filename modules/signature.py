@@ -12,8 +12,14 @@ class SignatureAdder:
     def __call__(self, *args, **kwargs):
         self.merge(self.create_signature())
 
-    def create_signature(self, signature='w/ ♡ by @benzlokzik', color=(5, 38, 17), font_path='ttf/Symbola.ttf',
-                         font_size=None, bg_color=(250, 250, 250)) -> Image:
+    def create_signature(
+        self,
+        signature="w/ ♡ by @benzlokzik",
+        color=(5, 38, 17),
+        font_path="ttf/Symbola.ttf",
+        font_size=None,
+        bg_color=(250, 250, 250),
+    ) -> Image:
         """
         Returns PIL.Image object of the sign
         :type bg_color: tuple[int, int, int] || str
@@ -26,7 +32,9 @@ class SignatureAdder:
         default_image: Image = self.image
 
         # Create an object with 1/8 height for sign
-        image = Image.new('RGB', (default_image.width, max(int(default_image.height / 8), 36)))
+        image = Image.new(
+            "RGB", (default_image.width, max(int(default_image.height / 8), 36))
+        )
 
         # Create an ImageDraw object
         draw = ImageDraw.Draw(image)
@@ -66,7 +74,7 @@ class SignatureAdder:
             image: Image = self.image
 
         # Create a new image that is the combined width of both images
-        collage = Image.new('RGB', (image.width, image.height + signature_image.height))
+        collage = Image.new("RGB", (image.width, image.height + signature_image.height))
 
         # Paste image onto the collage
         collage.paste(image, (0, 0))
@@ -79,6 +87,6 @@ class SignatureAdder:
         return collage
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     # calls the class
-    SignatureAdder(input() or 'testing/qr_g.png')()
+    SignatureAdder(input() or "testing/qr_g.png")()
