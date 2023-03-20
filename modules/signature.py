@@ -68,9 +68,9 @@ class SignatureAdder:
         """
         # Open the image file
         if main_img_path:
-            image: Image = Image.open(main_img_path)
+            image = Image.open(main_img_path)
         else:
-            image: Image = self.image
+            image = self.image
 
         # Create a new image that is the combined width of both images
         collage = Image.new("RGB", (image.width, image.height + signature_image.height))

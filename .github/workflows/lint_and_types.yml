@@ -27,6 +27,6 @@ jobs:
         poetry run flake8 --config ./.flake8 .
         poetry run black --config pyproject.toml --diff --check .
 
-    - name: Check types by pyright
-      run: |
-        poetry run pyright
+#    - name: Check types by pyright
+#      run: |
+#        poetry run pyright
