@@ -1,5 +1,4 @@
 from PIL import Image, ImageDraw, ImageFont
-from PIL.Image import Image
 
 
 class SignatureAdder:
@@ -16,7 +15,7 @@ class SignatureAdder:
         self,
         signature="w/ ♡ by @benzlokzik",
         color=(5, 38, 17),
-        font_path="ttf/Symbola.ttf",
+        font_path="../ttf/Symbola.ttf",
         font_size=None,
         bg_color=(250, 250, 250),
     ) -> Image:
@@ -89,4 +88,4 @@ class SignatureAdder:
 
 if __name__ == "__main__":
     # calls the class
-    SignatureAdder(input() or "testing/qr_g.png")()
+    print(SignatureAdder(input() or "../testing/qr_g.png")())  # None
