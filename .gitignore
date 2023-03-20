@@ -20,6 +20,7 @@ ttf*
 
 # virtual env
 venv*
+venv.13*
 
 # used font
 !/ttf/Symbola.ttf
