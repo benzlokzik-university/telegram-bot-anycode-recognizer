@@ -24,7 +24,7 @@ jobs:
 
     - name: Linting code by flake8
       run: |
-        poetry run flake8 --show-source --statistics
+        poetry run flake8 --show-source --statistics --config .flake8
 
     - name: Check types by pyright
       run: |
