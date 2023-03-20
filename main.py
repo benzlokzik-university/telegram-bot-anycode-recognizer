@@ -9,7 +9,7 @@ from telegram import Update, InputFile  # , InlineKeyboardButton
 from telegram.constants import ChatAction
 from telegram.ext import CommandHandler, ContextTypes, MessageHandler, filters, ApplicationBuilder
 
-from moduls import generators, reader, signature
+from modules import generators, reader, signature
 
 
 def send_action(action):
