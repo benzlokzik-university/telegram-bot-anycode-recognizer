@@ -24,7 +24,8 @@ jobs:
 
     - name: Linting code by flake8
       run: |
-        poetry run flake8 --show-source --statistics --config .flake8
+        poetry run flake8 --config ./.flake8 .
+        poetry run black --config pyproject.toml --diff --check .
 
     - name: Check types by pyright
       run: |
