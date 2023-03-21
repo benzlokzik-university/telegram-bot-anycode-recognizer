@@ -9,7 +9,7 @@ class SignatureAdder:
             self.image = start_image
 
     def __call__(self, *args, **kwargs):
-        self.merge(self.create_signature())
+        self.merge(self.create_signature()).show()
 
     def create_signature(
         self,
