@@ -3,6 +3,7 @@ import os
 from functools import wraps
 from io import BytesIO
 
+# import telegram.request
 from PIL import Image
 from dotenv import load_dotenv
 from telegram import Update, InputFile  # , InlineKeyboardButton
@@ -39,7 +40,7 @@ send_upload_photo_action = send_action(ChatAction.UPLOAD_PHOTO)
 
 logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-    level=logging.DEBUG,
+    level=logging.ERROR,
     # filename="log/debug.log",
     # filemode="w"
 )
@@ -107,13 +108,14 @@ async def base64_decoder(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
 async def pic_decoder(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     file_id = update.message.photo[-1].file_id
     bot = context.bot
-    file_bytes = bot.get_file(file_id)
-    print(file_bytes)
-    file_data = await bot.download_file(file_bytes.file_path)
+
+    file_obj = await bot.get_file(file_id)
+    file_data = await file_obj.download_as_bytearray()
+
     file_bytes_io = BytesIO(file_data)
     image = Image.open(file_bytes_io)
     read_data = reader.Decoder(image)
-    if not len(read_data):
+    if not read_data:
         await update.message.reply_text(
             """Nothing was found 🤷‍♂️\nTry again with better pic"""
         )
