@@ -6,6 +6,8 @@ class Decoder:
     def __init__(self, image):
         if type(image) == str:
             self.image = Image.open(image)
+        else:
+            self.image = Image.open(image)
 
     def __len__(self):
         return len(self.decode())

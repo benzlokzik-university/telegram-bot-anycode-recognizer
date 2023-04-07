@@ -18,6 +18,21 @@ from telegram.ext import (
 
 from modules import generators, reader, signature
 
+logger = logging.getLogger(__name__)
+
+
+def logger_writing(func):
+    """Writes received messages to log file."""
+
+    @wraps(func)
+    async def command_func(update, context, *args, **kwargs):
+        # gets message and writes it into log file using logger global object
+        global logger
+        logger.info(update.message)
+        return await func(update, context, *args, **kwargs)
+
+    return command_func
+
 
 def send_action(action):
     """Sends `action` while processing func command."""
@@ -39,10 +54,11 @@ send_typing_action = send_action(ChatAction.TYPING)
 send_upload_photo_action = send_action(ChatAction.UPLOAD_PHOTO)
 
 logging.basicConfig(
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-    level=logging.ERROR,
-    # filename="log/debug.log",
-    # filemode="w"
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",  # .encode('utf-8'),
+    level=logging.INFO,
+    filename="log/log.log",
+    filemode="w",
+    encoding="utf-8"
 )
 
 
@@ -65,6 +81,7 @@ logging.basicConfig(
 
 # TODO: добавить приветствие после старта и выбор языка через
 #  https://github.com/python-telegram-bot/python-telegram-bot/wiki/Code-snippets#build-a-menu-with-buttons=
+@logger_writing
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     await context.bot.send_message(
         chat_id=update.effective_chat.id,
@@ -87,6 +104,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 
 
 @send_typing_action
+@logger_writing
 async def user_help(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     await update.message.reply_text(
         f"""
@@ -99,13 +117,16 @@ By default you can send a picture to decode it.
     )
 
 
+@logger_writing
 @send_typing_action
 async def base64_decoder(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    await update.message.reply_text("")
+    await update.message.reply_text("Should be added soon 👀")
 
 
+@logger_writing
 @send_upload_photo_action
 async def pic_decoder(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    print(update.message)
     file_id = update.message.photo[-1].file_id
     bot = context.bot
 
@@ -120,7 +141,7 @@ async def pic_decoder(update: Update, context: ContextTypes.DEFAULT_TYPE) -> Non
             """Nothing was found 🤷‍♂️\nTry again with better pic"""
         )
     else:
-        for i in read_data():
+        for i in read_data:
             new_image = generators.Generator(i[0], i[1]).img
             new_image = signature.SignatureAdder(new_image)().tobytes()
             sending_image = BytesIO(new_image)
