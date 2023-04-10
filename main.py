@@ -56,9 +56,9 @@ send_upload_photo_action = send_action(ChatAction.UPLOAD_PHOTO)
 logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",  # .encode('utf-8'),
     level=logging.INFO,
-    filename="log/log.log",
-    filemode="w",
-    encoding="utf-8"
+    # filename="log/log.log",
+    # filemode="w",
+    encoding="utf-8",
 )
 
 
@@ -141,8 +141,8 @@ async def pic_decoder(update: Update, context: ContextTypes.DEFAULT_TYPE) -> Non
             """Nothing was found 🤷‍♂️\nTry again with better pic"""
         )
     else:
-        for i in read_data:
-            new_image = generators.Generator(i[0], i[1]).img
+        for i in read_data.decoded:
+            new_image = generators.Generator(i.type, i.data.decode("utf-8")).img
             new_image = signature.SignatureAdder(new_image)().tobytes()
             sending_image = BytesIO(new_image)
             image_file = InputFile(sending_image, "image.jpg")

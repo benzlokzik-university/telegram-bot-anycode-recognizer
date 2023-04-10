@@ -9,7 +9,7 @@ class SignatureAdder:
             self.image = start_image
 
     def __call__(self, *args, **kwargs):
-        self.merge(self.create_signature()).show()
+        return self.merge(self.create_signature())
 
     def create_signature(
         self,
@@ -89,3 +89,4 @@ class SignatureAdder:
 if __name__ == "__main__":
     # calls the class
     print(SignatureAdder(input() or "../testing/qr_g.png")())  # None
+    print(SignatureAdder(input() or "../testing/qr_g.png")().tobytes())  # None
