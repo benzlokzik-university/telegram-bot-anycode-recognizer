@@ -55,8 +55,8 @@ send_upload_photo_action = send_action(ChatAction.UPLOAD_PHOTO)
 
 logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",  # .encode('utf-8'),
-    level=logging.INFO,
-    # filename="log/log.log",
+    level=logging.DEBUG,
+    # filename="log/log_interesting.log",
     # filemode="w",
     encoding="utf-8",
 )
@@ -126,7 +126,6 @@ async def base64_decoder(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
 @logger_writing
 @send_upload_photo_action
 async def pic_decoder(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    print(update.message)
     file_id = update.message.photo[-1].file_id
     bot = context.bot
 
@@ -141,6 +140,7 @@ async def pic_decoder(update: Update, context: ContextTypes.DEFAULT_TYPE) -> Non
             """Nothing was found 🤷‍♂️\nTry again with better pic"""
         )
     else:
+        print(read_data.decoded)
         for i in read_data.decoded:
             caption = f"Detected {i.type} code!\nHere's the value:\n{i.data.decode('utf-8')}"
             print(caption)
