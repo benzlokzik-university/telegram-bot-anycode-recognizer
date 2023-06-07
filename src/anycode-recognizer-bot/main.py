@@ -60,9 +60,6 @@ logging.basicConfig(
 )
 
 
-
-
-
 #
 # async def user_help(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 #     # print(dir(update.effective_user))
@@ -77,18 +74,12 @@ logging.basicConfig(
 #     )
 
 
-
-
-
-
-
-
 def main():
     load_dotenv(dotenv_path="../../secrets/.env")
     application = ApplicationBuilder().token(os.getenv("TOKEN")).build()
 
     # Connect to the SQLite database
-    conn = sqlite3.connect('data.db')
+    conn = sqlite3.connect("data.db")
     cursor = conn.cursor()
 
     start_handler = CommandHandler("start", start.start)

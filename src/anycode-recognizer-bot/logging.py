@@ -1,14 +1,22 @@
 import sqlite3
 from telegram import Update
-from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
+from telegram.ext import (
+    Updater,
+    CommandHandler,
+    MessageHandler,
+    Filters,
+    CallbackContext,
+)
 
 # Connect to the SQLite database
-conn = sqlite3.connect('data.db')
+conn = sqlite3.connect("data.db")
 cursor = conn.cursor()
 
 # Create a table if it doesn't exist
-cursor.execute('''CREATE TABLE IF NOT EXISTS users
-                  (id INTEGER PRIMARY KEY, username TEXT, message_count INTEGER, pic_count INTEGER)''')
+cursor.execute(
+    """CREATE TABLE IF NOT EXISTS users
+                  (id INTEGER PRIMARY KEY, username TEXT, message_count INTEGER, pic_count INTEGER)"""
+)
 conn.commit()
 
 
@@ -49,7 +57,9 @@ def count_message(update: Update, context: CallbackContext):
     chat_id = update.message.chat_id
 
     # Increment the message counter for the user
-    execute_query("UPDATE users SET message_count = message_count + 1 WHERE id=?", (chat_id,))
+    execute_query(
+        "UPDATE users SET message_count = message_count + 1 WHERE id=?", (chat_id,)
+    )
 
 
 def count_pic(update: Update, context: CallbackContext):

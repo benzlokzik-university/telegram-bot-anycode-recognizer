@@ -6,13 +6,14 @@ from telegram import Update
 from telegram.ext import ContextTypes
 
 
-
 @send_upload_photo_action
 async def pic_decoder(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     bot = context.bot
     # ---
     new_image = generators.Generator(i.type, i.data.decode("utf-8")).img
-    new_image = signature.SignatureAdder(new_image, font_path='ttf/Symbola.ttf')().tobytes()
+    new_image = signature.SignatureAdder(
+        new_image, font_path="ttf/Symbola.ttf"
+    )().tobytes()
     sending_image = BytesIO(new_image)
     image_file = InputFile(sending_image, "image.jpg")
     # ---

@@ -14,12 +14,12 @@ class SignatureAdder:
         return self.merge(self.create_signature())
 
     def create_signature(
-            self,
-            signature="w/ ♡ by @benzlokzik",
-            color=(5, 38, 17),
-            # font_path="../ttf/Symbola.ttf",
-            font_size=None,
-            bg_color=(250, 250, 250),
+        self,
+        signature="w/ ♡ by @benzlokzik",
+        color=(5, 38, 17),
+        # font_path="../ttf/Symbola.ttf",
+        font_size=None,
+        bg_color=(250, 250, 250),
     ) -> Image:
         """
         Returns PIL.Image object of the sign
