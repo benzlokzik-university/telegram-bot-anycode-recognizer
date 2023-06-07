@@ -1,5 +1,6 @@
 import logging
 import os
+import sqlite3
 from functools import wraps
 
 # import telegram.request
@@ -12,6 +13,8 @@ from telegram.ext import (
     filters,
     ApplicationBuilder,
 )
+
+from callbacks import *
 
 logger = logging.getLogger(__name__)
 
@@ -60,7 +63,7 @@ logging.basicConfig(
 
 
 
-# @send_typing_action
+#
 # async def user_help(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 #     # print(dir(update.effective_user))
 #     await update.message.reply_text(
@@ -84,16 +87,18 @@ def main():
     load_dotenv(dotenv_path="../../secrets/.env")
     application = ApplicationBuilder().token(os.getenv("TOKEN")).build()
 
-    start_handler = CommandHandler("start", start)
-    help_handler = CommandHandler("help", user_help)
+    # Connect to the SQLite database
+    conn = sqlite3.connect('data.db')
+    cursor = conn.cursor()
+
+    start_handler = CommandHandler("start", start.start)
+    help_handler = CommandHandler("help", help.user_help)
 
     application.add_handler(help_handler)
     application.add_handler(start_handler)
+
     application.add_handler(
-        MessageHandler(filters.TEXT & ~filters.COMMAND, base64_decoder)
-    )
-    application.add_handler(
-        MessageHandler(filters.PHOTO & ~filters.COMMAND, pic_decoder)
+        MessageHandler(filters.PHOTO & ~filters.COMMAND, pic_decoder.pic_decoder)
     )
     application.run_polling()
 
