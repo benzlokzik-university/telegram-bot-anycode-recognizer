@@ -60,20 +60,6 @@ logging.basicConfig(
 )
 
 
-#
-# async def user_help(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-#     # print(dir(update.effective_user))
-#     await update.message.reply_text(
-#         f"""
-# Salut again, {update.effective_user.full_name}!
-# This is a bot to recognize and create barcodes, QR and base64 codes!
-# By default, you can send a picture to decode it or .txt/text if it's a base64
-# /qr — create a QR
-# /base64 — encrypt w/ base64
-# """
-#     )
-
-
 def main():
     load_dotenv(dotenv_path="../../secrets/.env")
     application = ApplicationBuilder().token(os.getenv("TOKEN")).build()

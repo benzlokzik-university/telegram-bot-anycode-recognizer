@@ -4,7 +4,6 @@ from telegram.ext import (
     Updater,
     CommandHandler,
     MessageHandler,
-    Filters,
     CallbackContext,
 )
 
@@ -47,10 +46,6 @@ def start(update: Update, context: CallbackContext):
     if user is None:
         # Insert a new user into the database
         execute_query("INSERT INTO users VALUES (?, ?, 0, 0)", (chat_id, username))
-
-        update.message.reply_text("Welcome! You have been added to the database.")
-    else:
-        update.message.reply_text("Welcome back!")
 
 
 def count_message(update: Update, context: CallbackContext):
