@@ -4,14 +4,17 @@ from PIL import Image
 
 class Decoder:
     def __init__(self, image):
-        if type(image) == str:
+        if isinstance(image, Image.Image):
+            self.image = image
+        else:
             self.image = Image.open(image)
+        self.decoded = self.decode()
 
     def __len__(self):
-        return len(self.decode())
+        return len(self.decoded)
 
     def __call__(self, *args, **kwargs):
-        return self.decode()
+        return self.decoded
 
     def decode(self):
         # decodes all barcodes from an image

@@ -2,20 +2,22 @@ from PIL import Image, ImageDraw, ImageFont
 
 
 class SignatureAdder:
-    def __init__(self, start_image):
+    def __init__(self, start_image, font_path):
         if type(start_image) == str:
             self.image = Image.open(start_image)
         else:
             self.image = start_image
 
+        self.font_path = font_path
+
     def __call__(self, *args, **kwargs):
-        self.merge(self.create_signature()).show()
+        return self.merge(self.create_signature())
 
     def create_signature(
         self,
         signature="w/ ♡ by @benzlokzik",
         color=(5, 38, 17),
-        font_path="../ttf/Symbola.ttf",
+        # font_path="../ttf/Symbola.ttf",
         font_size=None,
         bg_color=(250, 250, 250),
     ) -> Image:
@@ -42,7 +44,7 @@ class SignatureAdder:
         draw.rectangle((0, 0, image.width, image.height), fill=bg_color)
 
         # Set the font and font size
-        font = ImageFont.truetype(font_path, font_size or int(image.height / 2))
+        font = ImageFont.truetype(self.font_path, font_size or int(image.height / 2))
 
         text_width: int
         text_height: int
@@ -89,3 +91,4 @@ class SignatureAdder:
 if __name__ == "__main__":
     # calls the class
     print(SignatureAdder(input() or "../testing/qr_g.png")())  # None
+    print(SignatureAdder(input() or "../testing/qr_g.png")().tobytes())  # None
