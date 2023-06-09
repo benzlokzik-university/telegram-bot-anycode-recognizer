@@ -23,7 +23,7 @@ cd telegram-bot-anycode-recognizer
 
 <br/>
 
-#### Creating venv
+#### Building the project
 
 ```shell
  docker run Dockerfile
