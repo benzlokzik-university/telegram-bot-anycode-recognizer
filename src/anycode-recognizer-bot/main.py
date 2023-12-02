@@ -18,8 +18,8 @@ from callbacks import *
 
 logger = logging.getLogger(__name__)
 
-
-def logger_writing(func):
+# TODO: MOVE TO UTILS!!!!!!
+def logger_writing(func: ):
     """Writes received messages to log file."""
 
     @wraps(func)
@@ -64,7 +64,7 @@ def main():
     load_dotenv(dotenv_path="../../secrets/.env")
     application = ApplicationBuilder().token(os.getenv("TOKEN")).build()
 
-    # Connect to the SQLite database
+    # Connect to the SQLite database for some shit
     conn = sqlite3.connect("data.db")
     cursor = conn.cursor()
 

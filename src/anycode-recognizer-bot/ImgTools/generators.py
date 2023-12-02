@@ -6,7 +6,7 @@ from barcode.writer import ImageWriter
 class Generator:
     """
     What is it for?
-        This object generates a qr or barcode
+        This object generates a qr or barcode, objects, which inherited from `Pillow` img
     """
 
     def __init__(self, code_type: str, data: str, filename=None):
@@ -26,14 +26,14 @@ class Generator:
             return self.img
 
     def barcode_generator(self):
-        # Create a barcode object
+        """Creates a barcode object"""
         result = barcode.get_barcode_class(self.code_type)(
             self.data, writer=ImageWriter()
         )
         return result
 
     def qr_generator(self) -> object:
-        # Create a QR code object
+        """Creates a QR code object"""
         qr = qrcode.QRCode(
             version=2,
             error_correction=qrcode.constants.ERROR_CORRECT_M,
